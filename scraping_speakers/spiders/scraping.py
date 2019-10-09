@@ -11,6 +11,7 @@ class ToScrapeSpiderXPath(scrapy.Spider):
     def parse(self, response):
         for quote in response.xpath('//div[@class="m-speakers-list__items__item__header"]'):
             yield {
+#                'link': quote.xpath('./a[@class="full-link"]/@href').extract(),
                 'author': quote.xpath('./h3[@class="m-speakers-list__items__item__header__title"]/a[@class="m-speakers-list__items__item__header__title__link js-librarylink-entry"]/text()').extract_first(),
                 'position': quote.xpath('.//span[@class="m-speakers-list__items__item__header__meta__position"]/text()').extract_first(),
                 'company': quote.xpath('.//span[@class="m-speakers-list__items__item__header__meta__company"]/text()').extract_first()
